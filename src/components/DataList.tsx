@@ -1,0 +1,57 @@
+'use client';
+import Link from 'next/link';
+import { MdDelete } from 'react-icons/md'
+const List = ({ data }: DataList) => {
+    const deleteHandler = async (id: string) => {
+    }
+    return (
+        <div className="flex h-screen">
+            <div className="m-auto">
+                <div className="text-center">
+                    <h1 className="text-2xl font-semibold">Test List</h1>
+                    <div className="flex justify-center m-4">
+                        <table className="border-collapse border border-slate-400 w-full md:w-[800px]">
+                            <thead>
+                                <tr className='bg-sky-500'>
+                                    <th className="border border-slate-300 text-xs md:text-base">SL</th>
+                                    <th className="border border-slate-300 text-xs md:text-base">Name</th>
+                                    <th className="border border-slate-300 text-xs md:text-base">Test Name</th>
+                                    <th className="border border-slate-300 text-xs md:text-base">Result</th>
+                                    <th className="border border-slate-300 text-xs md:text-base">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data?.map((singleData: Data, index: number) => (
+                                    <tr className="text-center" key={singleData?.id}>
+                                        <td className="border border-slate-300 text-sm md:text-base">{index + 1}</td>
+                                        <td className="border border-slate-300 text-sm md:text-base">{singleData?.name}</td>
+                                        <td className="border border-slate-300 text-sm md:text-base">{singleData?.testName}</td>
+                                        <td className="border border-slate-300 text-sm md:text-base">{singleData?.result}</td>
+                                        <td className="border border-slate-300 text-sm md:text-base">
+                                            <div className='flex justify-center items-center gap-4'>
+                                                <Link className="text-blue-600" href={`/test/${singleData?.id}`}>
+                                                    <p>Details</p>
+                                                </Link>
+                                                <button className="cursor-pointer text-red-500" onClick={() => deleteHandler(singleData?.id)}>
+                                                    <MdDelete />
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className='text-center'>
+                        <Link href='/add-test'>
+                            <button className='bg-blue-600 text-white px-6 py-1 text-lg rounded-md'>+ Add</button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+};
+
+export default List;
