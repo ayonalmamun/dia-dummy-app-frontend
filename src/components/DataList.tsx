@@ -1,9 +1,15 @@
 'use client';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { MdDelete } from 'react-icons/md'
 const List = ({ data }: DataList) => {
+    const [dataList, setDatalist] = useState<Test[]>([]);
     const deleteHandler = async (id: string) => {
+        
     }
+    useEffect(() => {
+        if (data?.length) setDatalist(data);
+    }, [data])
     return (
         <div className="flex h-screen">
             <div className="m-auto">
@@ -21,7 +27,7 @@ const List = ({ data }: DataList) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data?.map((singleData: Data, index: number) => (
+                                {dataList?.map((singleData: Test, index: number) => (
                                     <tr className="text-center" key={singleData?.id}>
                                         <td className="border border-slate-300 text-sm md:text-base">{index + 1}</td>
                                         <td className="border border-slate-300 text-sm md:text-base">{singleData?.name}</td>

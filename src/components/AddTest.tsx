@@ -24,9 +24,8 @@ const AddTest = () => {
         })
     }
 
-    const submitHandler = async(event: React.MouseEvent) => {
+    const submitHandler = async (event: React.MouseEvent) => {
         event.preventDefault();
-        router.push('/');
     }
 
     return (

@@ -1,4 +1,5 @@
 import TestDetails from "@/components/TestDetails";
+import { notFound } from "next/navigation";
 
 const data = {
     id: '1',
@@ -7,12 +8,11 @@ const data = {
     result: 'Negative'
 };
 
-const TestId = ({ params }: { params: { id: string } }) => {
+const TestId = async ({ params }: { params: { id: string } }) => {
+    const id = params?.id;
     return (
-        <>
-            <TestDetails data={data} />
-        </>
-    )
+        <TestDetails data={data} />
+    );
 }
 
 export default TestId;

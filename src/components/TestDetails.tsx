@@ -1,9 +1,11 @@
 'use client';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { AiFillEdit } from 'react-icons/ai'
+import { AiFillEdit } from 'react-icons/ai';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 interface Props {
-    data: Data
+    data: Test
 };
 
 const List = ({ data }: Props) => {
@@ -34,8 +36,6 @@ const List = ({ data }: Props) => {
     }
     const submitHandler = async (event: React.MouseEvent) => {
         event.preventDefault();
-        // router.push('/')
-        setMode('view');
     }
     useEffect(() => {
         if (Object.keys(data)) setTestReport(data);
@@ -49,11 +49,16 @@ const List = ({ data }: Props) => {
                             <div className='w-screen h-screen flex justify-center items-center'>
                                 <div className='relative w-[300px] md:w-[500px] mx-auto'>
                                     <div className='border-2 border-blue-600 p-8 rounded-md text-center mx-auto'>
-                                        <p className='text-xl md:text-3xl font-semibold'>Name: {data?.name}</p>
-                                        <p className='my-3 text-md md:text-2xl font-medium'>Test Name: {data?.testName}</p>
+                                        <p className='text-xl md:text-3xl font-semibold'>Name: {testReport?.name}</p>
+                                        <p className='my-3 text-md md:text-2xl font-medium'>Test Name: {testReport?.testName}</p>
                                         <div className='flex justify-center items-center gap-2 text-md md:text-2xl font-medium'>
                                             <p>Result: </p>
-                                            <button className={`${data?.result === 'Negative' ? "bg-green-600" : "bg-red-600"} text-white text-sm px-4 py-1 rounded-md`}>{data?.result}</button></div>
+                                            <button className={`${testReport?.result === 'Negative' ? "bg-green-600" : "bg-red-600"} text-white text-sm px-4 py-1 rounded-md`}>{testReport?.result}</button></div>
+                                    </div>
+                                    <div className='absolute top-[-12px] left-[-15px]'>
+                                        <Link href={'/'}>
+                                            <button onClick={updateMode} className='bg-red-600 text-white font-medium text-lg p-2 rounded-full'><IoMdArrowRoundBack /></button>
+                                        </Link>
                                     </div>
                                     <div className='absolute top-[-12px] right-[-15px]'>
                                         <button onClick={updateMode} className='bg-blue-600 text-white font-medium text-lg p-2 rounded-full'><AiFillEdit /></button>

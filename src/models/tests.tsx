@@ -1,8 +1,8 @@
 interface DataList {
-    data: Data[];
+    data: Test[];
 }
 
-interface Data {
+interface Test {
     id: string,
     name: string,
     testName: string,

@@ -28,11 +28,10 @@ const data = [
   },
 ]
 
-const Home = () => {
+const Home = async () => {
   return (
     <List data={data} />
   )
-
 }
 
 export default Home;
